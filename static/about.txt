@@ -1,0 +1,15 @@
+\\As a 26-year-old IT professional currently studying Information Technology, I have hands-on experience with a range of projects and technologies that showcase my expertise in DevOps, cloud infrastructure, data management, and automation. 
+
+Here are some key projects and accomplishments:
+
+* Azure DevOps Projects: Designed and implemented CI/CD pipelines and release management processes using PowerShell and Python, optimizing development workflows and enhancing deployment efficiency.
+
+* Cloud Infrastructure: Configured and managed Linux and Microsoft VMs on Azure and Swisscom for various financial applications, ensuring secure and scalable environments.
+
+* Data Automation: Developed automation scripts in Python and PowerShell for data processing tasks, significantly improving efficiency and accuracy in financial applications.
+
+* ETL Processes: Created and managed workflows in PowerCenter for generating comprehensive reports on results and errors, streamlining data integration and reporting.
+
+* Database Management: Configured and optimized SQL Server and DB2 databases for financial applications, ensuring accurate data handling and application performance.
+
+\\I am dedicated to leveraging my technical skills to solve complex problems and deliver impactful results. I look forward to connecting with professionals and exploring opportunities to contribute to innovative projects in the tech industry.

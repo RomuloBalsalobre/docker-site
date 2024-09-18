@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Editor - about.html</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .editor {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            spellcheck: false; /* Desativa o verificador de ortografia */
+            white-space: pre-wrap; /* Preserva espaços em branco e quebras de linha */
+            font-size: 14px;
+        }
+        .status-bar {
+            background-color: #000000;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .status-bar input {
+            background-color: black;
+            color: white;
+            border: none;
+            outline: none;
+            font-family: monospace;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+        .shortcuts {
+            background-color: #0e0e0e;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .shortcut {
+            margin-right: 10px;
+        }
+        .shortcut span {
+            color: rgb(231, 231, 231);
+        }
+    </style>
+</head>
+<body>
+    <div class="editor">
+        <!-- Conteúdo editável aqui -->
+    </div>
+    <div class="status-bar">
+        File: about.html; Digite "exit" para voltar a página inicial:
+        <input type="text" spellcheck="false">
+    </div>
+    <div class="shortcuts">
+        <div class="shortcut"><span>^G</span> Get Help</div>
+        <div class="shortcut"><span>^O</span> Write Out</div>
+        <div class="shortcut"><span>^R</span> Read File</div>
+        <div class="shortcut"><span>^Y</span> Prev Page</div>
+        <div class="shortcut"><span>^K</span> Cut Text</div>
+        <div class="shortcut"><span>^C</span> Cur Pos</div>
+        <div class="shortcut"><span>^X</span> Exit</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const editor = document.querySelector('.editor');
+            const input = document.querySelector('.status-bar input');
+
+            // Carregar o conteúdo do arquivo about.txt
+            fetch('about.txt')
+                .then(response => response.text())
+                .then(data => {
+                    editor.textContent = data;
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar o arquivo:', error);
+                });
+
+            input.focus();
+
+            document.addEventListener('click', () => {
+                input.focus();
+            });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const command = input.value.trim();
+                    if (command === 'exit') {
+                        window.location.href = 'bash.html';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Editor - contact.html</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .editor {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            spellcheck: false; /* Desativa o verificador de ortografia */
+            white-space: pre-wrap; /* Preserva espaços em branco e quebras de linha */
+            font-size: 12px; /* Define o tamanho da fonte */
+        }
+        .status-bar {
+            background-color: #000000;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .status-bar input {
+            background-color: black;
+            color: white;
+            border: none;
+            outline: none;
+            font-family: monospace;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+        .shortcuts {
+            background-color: #0e0e0e;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .shortcut {
+            margin-right: 10px;
+        }
+        .shortcut span {
+            color: rgb(231, 231, 231);
+        }
+        .contact-title {
+            color: #ff4500; /* Laranja */
+        }
+        .contact-link {
+            color: #1e90ff; /* Azul */
+        }
+    </style>
+</head>
+<body>
+    <div class="editor">
+        <div><span class="contact-title">Telefone:</span> <span class="contact-link">+55 11 94803-1586</span></div>
+        <div><span class="contact-title">Email:</span> <span class="contact-link">romulobalsalobre@gmail.com</span></div>
+        <div><span class="contact-title">LinkedIn:</span> <span class="contact-link"><a href="https://www.linkedin.com/in/romulo-b-8bb17ab0" target="_blank">https://linkedin.com/in/romulo-b-8bb17ab0</a></span></div>
+        <div><span class="contact-title">GitHub:</span> <span class="contact-link"><a href="https://github.com/RomuloBalsalobre" target="_blank">https://github.com/RomuloBalsalobre</a></span></div>
+    </div>
+    <div class="status-bar">
+        File: contact.html; Digite "exit" para voltar a página inicial:
+        <input type="text" spellcheck="false">
+    </div>
+    <div class="shortcuts">
+        <div class="shortcut"><span>^G</span> Get Help</div>
+        <div class="shortcut"><span>^O</span> Write Out</div>
+        <div class="shortcut"><span>^R</span> Read File</div>
+        <div class="shortcut"><span>^Y</span> Prev Page</div>
+        <div class="shortcut"><span>^K</span> Cut Text</div>
+        <div class="shortcut"><span>^C</span> Cur Pos</div>
+        <div class="shortcut"><span>^X</span> Exit</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.querySelector('.status-bar input');
+
+            input.focus();
+
+            document.addEventListener('click', () => {
+                input.focus();
+            });
+
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const command = input.value.trim();
+                    if (command === 'exit') {
+                        window.location.href = 'bash.html';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

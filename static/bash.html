@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell Simulator</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        .shell {
+            display: flex;
+            flex-direction: column;
+        }
+        .prompt {
+            margin-bottom: 10px;
+        }
+        .intro {
+            margin-bottom: 20px;
+        }
+        .intro span {
+            color: #00ff00; /* Verde */
+        }
+        .intro .keyword {
+            color: #ff4500; /* Laranja */
+        }
+        .intro .string {
+            color: #1e90ff; /* Azul */
+        }
+        .input-area {
+            display: flex;
+            align-items: center; /* Alinha os itens verticalmente ao centro */
+        }
+        .input-area input {
+            background-color: black;
+            color: white;
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            font-family: monospace;
+            margin-left: 5px; /* Adiciona um pequeno espaço entre o prompt e o input */
+        }
+        .prompt-text {
+            color: #00ff00; /* Verde Matrix */
+        }
+        .command-text {
+            color: white; /* Branco */
+        }
+        .file-link {
+            color: #1e90ff; /* Azul */
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="intro">
+            <p><span class="keyword">echo</span> <span class="string">"Este é um site rodando em Docker"</span></p>
+            <p><span class="keyword">echo</span> <span class="string">"Simulando um terminal bash"</span></p>
+            <p><span class="keyword">echo</span> <span class="string">"Digite 'ls' para ver as páginas e 'nano' (ou clique) para acessar a página"</span></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shell = document.querySelector('.shell');
+
+            const createNewInputArea = () => {
+                const newInputArea = document.createElement('div');
+                newInputArea.classList.add('input-area');
+                newInputArea.innerHTML = '<span class="prompt-text">user@romulo_site:~$ </span><input type="text" autofocus>';
+                shell.appendChild(newInputArea);
+
+                const input = newInputArea.querySelector('input');
+                input.focus();
+
+                document.addEventListener('click', () => {
+                    input.focus();
+                });
+
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        const command = input.value;
+                        input.value = '';
+
+                        if (command === 'cls') {
+                            shell.innerHTML = '';
+                            createNewInputArea();
+                        } else if (command === 'ls') {
+                            const files = ['about.html', 'contact.html']; // Lista de arquivos HTML
+                            const fileLinks = files.map(file => {
+                                return `<a href="${file}" class="file-link">${file}</a>`;
+                            }).join('<br>');
+                            const newPrompt = document.createElement('div');
+                            newPrompt.classList.add('prompt');
+                            newPrompt.innerHTML = `<span class="prompt-text">user@romulo_site:~$ </span><span class="command-text">${command}</span><br>${fileLinks}`;
+                            shell.insertBefore(newPrompt, newInputArea);
+
+                            createNewInputArea();
+                            shell.removeChild(newInputArea);
+                        } else if (command.startsWith('nano ')) {
+                            const filename = command.split(' ')[1];
+                            window.location.href = filename;
+                        } else {
+                            const newPrompt = document.createElement('div');
+                            newPrompt.classList.add('prompt');
+                            newPrompt.innerHTML = `<span class="prompt-text">user@romulo_site:~$ </span><span class="command-text">${command}</span>`;
+                            shell.insertBefore(newPrompt, newInputArea);
+
+                            createNewInputArea();
+                            shell.removeChild(newInputArea);
+                        }
+                    }
+                });
+            };
+
+            createNewInputArea();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Dependências comuns
+flask
+requests
+numpy
+gunicorn
